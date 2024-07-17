@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+    CIS213 Unit 5, Guided Practice 1
+    Author: Michael Corleone
+    Date: 07/17/2024
+  -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unit 5, Guided Practice 1</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="modernizr.custom.05819.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Michael Corloene, Guided Practice 1</h1>
+    </header>
+    <article>
+      <h2>Square Root Calculator</h2>
+      <form>
+        <fieldset>
+          <label for="mValue"> Enter a number </label>
+          <input type="number" id="value" />
+        </fieldset>
+        <fieldset>
+          <button type="button" id="convertButton">
+            Calculate square root
+          </button>
+        </fieldset>
+        <fieldset>
+          <p>Square root</p>
+          <p id="sqRoot"></p>
+        </fieldset>
+      </form>
+    </article>
+    <script>
+      var valueElement = document.getElementById("value");
+      var resultElement = document.getElementById("sqRoot");
+
+      function convert() {
+        //use the built-in Math class to calculate the square root
+        var root = Math.sqrt(valueElement.value);
+        //format the output to be fixed format with 2 decimals
+        resultElement.innerHTML = root.toFixed(2);
+      }
+
+      //add event listeners to calculate square root button and clear form
+      function createEventListener() {
+        var submitButton = document.getElementById("convertButton");
+
+        if (submitButton.addEventListener) {
+          submitButton.addEventListener("click", convert, false);
+        } else if (submitButton.attachEvent) {
+          submitButton.attachEvent("onclick", convert);
+        }
+        //clear the last starting value
+        valueElement.value = "";
+        //clear the last result
+        resultElement.value = "";
+      }
+
+      if (window.addEventListener) {
+        window.addEventListener("load", createEventListener, false);
+      } else if (window.attachEvent) {
+        window.attachEvent("onload", createEventListener);
+      }
+    </script>
+  </body>
+</html>
